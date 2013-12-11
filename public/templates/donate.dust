@@ -9,7 +9,7 @@
         <div class="box-center">
             <h1>Doar livro</h1>
 
-            <form action="/donate" method="POST" novalidate parsley-validate>
+            <form action="/books" method="POST" novalidate parsley-validate>
                 <div class="form-group">
                     <label for="book-name">Nome</label>
                     <input type="text" class="form-control" id="book-name" name="name" required>

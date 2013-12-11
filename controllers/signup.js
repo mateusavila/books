@@ -24,19 +24,28 @@ module.exports = function (server) {
         console.log('SIGNUP');
         console.log(req.body);
 
-        bcrypt.genSalt(10, function(err, salt) {
-            bcrypt.hash(pswd, salt, function(err, hashPswd) {
-                console.log(hashPswd);
-                
-                var newUser = new User({name: name, password: hashPswd, email: email});
+        User.findOne({ 'email': email }, {},  function (err, status) {
+            console.log('Status', status);
 
-                newUser.save(function(err,user) {
-                    req.session.user_id =  user.id;
+            if (!status) {
+                bcrypt.genSalt(10, function(err, salt) {
+                    bcrypt.hash(pswd, salt, function(err, hashPswd) {
+                        console.log(hashPswd);
+                        
+                        var newUser = new User({name: name, password: hashPswd, email: email});
 
-                    res.redirect('/');
+                        newUser.save(function(err,user) {
+                            req.session.user_id =  user.id;
+
+                            res.send(200, { success: 'Account created' });
+                        });
+                    });
                 });
-            });
+            } else {
+                res.send(409, { error: 'User already exists' });
+            }
         });
+
 
     });
 };

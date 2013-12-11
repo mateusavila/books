@@ -9,7 +9,7 @@ var bookModel = function () {
         name: String,
         category: String,
         status: Boolean,
-        subscribers: Array
+        subscribers: Array,
         giver: String
     });
 

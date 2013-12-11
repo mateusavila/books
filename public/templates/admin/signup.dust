@@ -5,11 +5,11 @@
 {/title}
 
 {<body}
-    <div class="container">
+    <div class="container" id="signup-page">
         <div class="box-center">
             <h2>CADASTRO</h2>
 
-            <form action="/signup" method="POST" novalidate parsley-validate>
+            <form action="/signup" id="signup-form" method="POST" novalidate parsley-validate>
 
                 <div class="form-group">
                     <label for="user-name">Nome</label>
@@ -29,7 +29,14 @@
                 <input type="hidden" name="_csrf" value="{_csrf}">
                 <input type="hidden" name="_method" value="POST">
 
-                <button class="btn btn-primary">Criar conta</button>
+                <div id="error-already-exist" class="alert alert-warning hide">
+                    <i class="fa fa-exclamation-triangle"></i> 
+                    O email informado já é cadastrado. <a href="/recovery-pswd">Deseja recuperar sua senha?</a>
+                </div>
+
+                <button class="btn btn-primary btn-lg btn-block">Criar conta</button>
+                
+                <a href="/login">Já possui uma conta?</a>
             </form>
         </div>
     </div>
@@ -38,4 +45,30 @@
 
 {<scripts}
     <script src="components/parsleyjs/dist/parsley.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('body').on('submit', '#signup-form', function(e){
+
+                $.post( "/signup", $( this ).serialize() )
+                    .done(function(data){
+                        console.log('SUCCESS');
+                        $('#signup-page').empty().html('<h2 class="success-msg">Conta criada com sucesso :)</h2>');
+
+                        setTimeout(function(){
+                            window.location.href = "/";
+                        }, 3000);
+                    })
+                    .error(function(data){
+                        console.log(data);
+                        if (data.status === 409) {
+                            console.log('SHow error');
+                            $('#error-already-exist').removeClass('hide');
+                        }
+                    });
+
+                console.log('Tentou submeter o form');
+                e.preventDefault();
+            });
+        });
+    </script>
 {/scripts}

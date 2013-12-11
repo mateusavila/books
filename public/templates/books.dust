@@ -1,0 +1,19 @@
+{>"layouts/master" /}
+
+{<title}
+    Livros
+{/title}
+
+{<body}
+    <div class="container">
+        <div class="box">
+            <h1>Sorteios</h1>
+
+        </div>
+    </div>
+    
+{/body}
+
+{<scripts}
+    
+{/scripts}
