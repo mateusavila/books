@@ -36,7 +36,7 @@
 
                 <button class="btn btn-primary btn-lg btn-block">Criar conta</button>
                 
-                <a href="/login">Já possui uma conta?</a>
+                <a href="/login">Já possui uma conta? Entre agora</a>
             </form>
         </div>
     </div>

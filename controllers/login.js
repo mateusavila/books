@@ -33,15 +33,15 @@ module.exports = function (server) {
             if (err) return handleError(err);
             
             if (!user) {
-                res.status(403);
+                res.send(403, { success: 'User dont exists' });
             } else {
                 bcrypt.compare(pswd, user.password, function(err, status) {
                     console.log('RESPOSTA DA COMPARAÇÃO', status);
                     if (status) {
                         req.session.user_id =  user.id;
-                        res.redirect('/');
+                        res.send(200, { success: 'Success login' });
                     } else {
-                        res.status(401);
+                        res.send(401, { success: 'Wrong pswd' });
                     }
                 });
             }

@@ -9,7 +9,7 @@
         <div class="box-center">
             <h2>LOGIN</h2>
 
-            <form action="/login" method="POST" novalidate parsley-validate>
+            <form action="/login" id="login-form" method="POST" novalidate parsley-validate>
                 <div class="form-group">
                     <label for="user-email">Email</label>
                     <input type="email" class="form-control" id="user-email" name="email" required>
@@ -23,7 +23,14 @@
                 <input type="hidden" name="_csrf" value="{_csrf}">
                 <input type="hidden" name="_method" value="POST">
 
-                <button class="btn btn-primary">Logar</button>
+                <div id="error-user-email-wrong" class="alert alert-warning hide">
+                    <i class="fa fa-exclamation-triangle"></i> 
+                    Usuário e/ou senha errada. <a href="/signup">Deseja criar uma nova conta?</a>
+                </div>
+
+                <button class="btn btn-primary btn-block btn-lg">Logar</button>
+                <a href="/recovery-pswd">Esqueceu sua senha?</a>
+                <a href="/signup">Não possui uma conta? Crie agora</a>
             </form>
         </div>
     </div>
@@ -32,4 +39,22 @@
 
 {<scripts}
     <script src="components/parsleyjs/dist/parsley.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('body').on('submit', '#login-form', function(e){
+
+                $.post( "/login", $( this ).serialize() )
+                    .done(function(data){
+                        console.log('SUCCESS');
+                        window.location.href = "/";
+                    })
+                    .error(function(data){
+                        $('#error-user-email-wrong').removeClass('hide');
+                    });
+
+                console.log('Tentou submeter o form');
+                e.preventDefault();
+            });
+        });
+    </script>
 {/scripts}
