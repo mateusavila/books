@@ -28,14 +28,15 @@ module.exports = function (server) {
 
     });
 
-    server.post('/donate', function (req, res) {
+    server.post('/donate', checkAuth, function (req, res) {
         console.log(req);
         //Retrieve data
         var name = req.body.name;
         var category = req.body.category;
+        var giver = req.session.user_id;
 
         //Create a new instance of a Product
-        var newBook = new Book({name: name, category: category});
+        var newBook = new Book({name: name, category: category, giver: giver});
 
         //Save it to the database.
         newBook.save(function(err,book) {

@@ -10,6 +10,7 @@ var bookModel = function () {
         category: String,
         status: Boolean,
         subscribers: Array
+        giver: String
     });
 
     return mongoose.model('Book', bookSchema);
