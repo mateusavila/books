@@ -44,4 +44,9 @@
 //     "views": "path:./.build/templates"
 // }
 
+    "databaseConfig": {
+        "host": "localhost",
+        "database": "books"
+    }
+
 }
