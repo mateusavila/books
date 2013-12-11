@@ -32,7 +32,13 @@ module.exports = function (server) {
                     bcrypt.hash(pswd, salt, function(err, hashPswd) {
                         console.log(hashPswd);
                         
-                        var newUser = new User({name: name, password: hashPswd, email: email});
+                        var newUser = new User({
+                            name: name,
+                            password: hashPswd,
+                            email: email,
+                            tickets: 3,
+                            status: true
+                        });
 
                         newUser.save(function(err,user) {
                             req.session.user_id =  user.id;

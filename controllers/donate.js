@@ -16,15 +16,4 @@ module.exports = function (server) {
         console.log('DONATE');
         res.render('donate');
     });
-
-    server.get('/donate/:id', function (req, res) {
-        Book.findOne({ '_id': req.params.id }, {},  function (err, book) {
-            if (err) return handleError(err);
-            
-            console.log('BOOK', book);
-            res.render('admin/raffle', book);
-            
-        });
-
-    });
 };

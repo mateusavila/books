@@ -1,0 +1,62 @@
+{>"layouts/master" /}
+
+{<title}
+    Minha conta
+{/title}
+
+{<body}
+    
+    <div class="container">
+        <div class="box">
+            <h1>Minha conta</h1>
+
+            <h3>Créditos: {account.tickets}</h3>
+            
+            <div class="row">
+                <form action="/account" method="POST" novalidate parsley-validate class="col-md-4">
+                    <h3>Editar perfil</h3>
+                    <div class="form-group">
+                        <label for="user-name">Nome</label>
+                        <input type="text" value="{account.name}" class="form-control" id="user-name" name="name" required>
+                    </div>
+                    <p>
+                        <a href="#" id="change-pswd">Alterar senha</a>
+                    </p>
+                    <div class="form-group hide" id="pswd">
+                        <label for="user-pswd">Senha</label>
+                        <input type="password" class="form-control" id="user-pswd" name="password">
+                    </div>
+
+                    <input type="hidden" name="_csrf" value="{_csrf}">
+                    <input type="hidden" name="_method" value="POST">
+                    <button class="btn btn-default">Atualizar</button>
+                    <button class="pull-right btn btn-danger btn-xs">Deletar conta</button>
+                </form>
+                <div class="col-md-4">
+                    <h3>
+                        Doações ativas
+                    </h3>
+                </div>
+                <div class="col-md-4">
+                    <h3>
+                        Sorteios ativos
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{/body}
+
+{<scripts}
+    <script src="components/parsleyjs/dist/parsley.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('body').on('click', '#change-pswd', function(e){
+                $('#pswd').removeClass('hide');
+                $(this).hide();
+                e.preventDefault();
+            });
+        });
+    </script>
+{/scripts}

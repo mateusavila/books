@@ -29,8 +29,8 @@
                 </div>
 
                 <button class="btn btn-primary btn-block btn-lg">Logar</button>
-                <a href="/recovery-pswd">Esqueceu sua senha?</a>
-                <a href="/signup">Não possui uma conta? Crie agora</a>
+                <p><a href="/recovery-pswd">Esqueceu sua senha?</a></p>
+                <p><a href="/signup">Não possui uma conta? Crie agora</a></p>
             </form>
         </div>
     </div>
