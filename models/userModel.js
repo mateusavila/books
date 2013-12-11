@@ -9,8 +9,9 @@ var userModel = function () {
         name: String,
         email: String,
         password: String,
-        tickets: Integer,
-        status: Boolean
+        tickets: Number,
+        status: Boolean,
+        books: Array
     });
 
     return mongoose.model('User', userSchema);
