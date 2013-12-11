@@ -6,4 +6,26 @@
 
 {<body}
     <h1>{@pre type="content" key="index.greeting"/}</h1>
+
+    <form method="POST" action="/books">
+        <input name="name" placeholder="Book Name"><br>
+        <input name="category" placeholder="Category"><br>
+        <input type="hidden" name="_csrf" value="{_csrf}">
+        <input type="submit" value="Save">
+    </form>
+
+    {#books}
+    <div>
+      <h3 class="nm-np">{.name}</h3>
+      <h4 class="nm-np">{.category}</h4>
+    </div>
+    {/books}
+
+    <script>
+      $(document).ready(function(){
+        $.get( "books", function( data ) {
+          console.log(data);
+        });
+      });
+    </script>
 {/body}
