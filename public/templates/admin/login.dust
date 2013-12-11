@@ -6,24 +6,30 @@
 
 {<body}
     <div class="container">
-        <h2>LOGIN</h2>
+        <div class="box-center">
+            <h2>LOGIN</h2>
 
-        <form action="/login" method="POST">
-            <div class="form-group">
-                <label for="user-email">Email</label>
-                <input type="text" class="form-control" id="user-email" name="email">
-            </div>
+            <form action="/login" method="POST" novalidate parsley-validate>
+                <div class="form-group">
+                    <label for="user-email">Email</label>
+                    <input type="email" class="form-control" id="user-email" name="email" required>
+                </div>
 
-            <div class="form-group">
-                <label for="user-pswd">Senha</label>
-                <input type="password" class="form-control" id="user-pswd" name="password">
-            </div>
+                <div class="form-group">
+                    <label for="user-pswd">Senha</label>
+                    <input type="password" class="form-control" id="user-pswd" name="password" required>
+                </div>
 
-            <input type="hidden" name="_csrf" value="{_csrf}">
-            <input type="hidden" name="_method" value="POST">
+                <input type="hidden" name="_csrf" value="{_csrf}">
+                <input type="hidden" name="_method" value="POST">
 
-            <button class="btn btn-primary">Logar</button>
-        </form>
+                <button class="btn btn-primary">Logar</button>
+            </form>
+        </div>
     </div>
     
 {/body}
+
+{<scripts}
+    <script src="components/parsleyjs/dist/parsley.min.js"></script>
+{/scripts}

@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="/components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/app.css" />
 
-    <script src="/components/jquery/jquery.min.js"></script>
 </head>
 <body>
 
@@ -39,5 +38,8 @@
         Books
       </div>
     </footer>
+
+    <script src="/components/jquery/jquery.min.js"></script>
+    {+scripts /}
 </body>
 </html>

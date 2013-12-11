@@ -6,6 +6,7 @@
     "bootstrap": "~3.0.2",
     "angular": "~1.2.2",
     "jquery": "~2.0.0",
-    "font-awesome": "~4.0.3"
+    "font-awesome": "~4.0.3",
+    "parsleyjs": "~1.2.2"
   }
 }
