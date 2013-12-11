@@ -8,7 +8,8 @@ var userModel = function () {
     var userSchema = mongoose.Schema({
         name: String,
         email: String,
-        password: String
+        password: String,
+        tickets: Integer
     });
 
     return mongoose.model('User', userSchema);

@@ -5,27 +5,23 @@
 {/title}
 
 {<body}
-    <h1>{@pre type="content" key="index.greeting"/}</h1>
 
-    <form method="POST" action="/books">
-        <input name="name" placeholder="Book Name"><br>
-        <input name="category" placeholder="Category"><br>
-        <input type="hidden" name="_csrf" value="{_csrf}">
-        <input type="submit" value="Save">
-    </form>
+    <section class="banner">
+        <div class="container">
+            <p>
+                Pare o que está fazendo agora e olhe para sua estante. <br />
+                Quantos livros parados a mais de um ano tem nela? Muitos né?
+            </p>
 
-    {#books}
-    <div>
-      <h3 class="nm-np">{.name}</h3>
-      <h4 class="nm-np">{.category}</h4>
-    </div>
-    {/books}
+            <p>
+                Que tal fazer uma boa ação e doa-los para quem realmente tem interesse em ler? 
+            </p>
 
-    <script>
-      $(document).ready(function(){
-        $.get( "books", function( data ) {
-          console.log(data);
-        });
-      });
-    </script>
+            <div class="banner-btns">
+                <a href="" class="btn">Quero doar</a>
+                <a href="" class="btn">Quero participar dos sorteios</a>
+            </div>
+        </div>
+    </section>
+    
 {/body}

@@ -1,17 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="utf-8" />
     <title>{+title /}</title>
     <link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/app.css" />
 
-    <script src="components/angular/angular.min.js"></script>
     <script src="components/jquery/jquery.min.js"></script>
 </head>
 <body>
-<div id="wrapper">
-    {+body /}
-</div>
+
+    <header class="navbar header-app" role="banner">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="./" class="navbar-brand">Books</a>
+        </div>
+        <nav class="navbar-collapse" role="navigation">
+          <ul class="nav navbar-nav">
+                <li><a href=""><i class="fa fa-heart-o"></i> Quero doar</a></li>
+                <li><a href="">Quero participar dos sorteios</a></li>
+                <li><a href="">Como funciona</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right login-nav">
+            <button class="btn btn-primary">Cadastre-se</button>
+            <button class="btn"><i class="fa fa-user"></i> Login</button>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <div id="wrapper">
+        {+body /}
+    </div>
 </body>
 </html>
