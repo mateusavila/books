@@ -18,13 +18,13 @@
         </div>
         <nav class="navbar-collapse" role="navigation">
           <ul class="nav navbar-nav">
-                <li><a href=""><i class="fa fa-heart-o"></i> Quero doar</a></li>
-                <li><a href="">Quero participar dos sorteios</a></li>
-                <li><a href="">Como funciona</a></li>
+                <li><a href="/donate"><i class="fa fa-heart-o"></i> Quero doar</a></li>
+                <li><a href="/books">Quero participar dos sorteios</a></li>
+                <li><a href="/#como-funciona">Como funciona</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right login-nav">
-            <button class="btn btn-primary">Cadastre-se</button>
-            <button class="btn"><i class="fa fa-user"></i> Login</button>
+            <a href="/login" class="btn"><i class="fa fa-user"></i> Login</a>
+            <a href="/signup" class="btn btn-primary">Cadastre-se</a>
           </ul>
         </nav>
       </div>

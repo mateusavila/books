@@ -18,9 +18,15 @@
             </p>
 
             <div class="banner-btns">
-                <a href="" class="btn">Quero doar</a>
-                <a href="" class="btn">Quero participar dos sorteios</a>
+                <a href="/donate" class="btn btn-lg btn-danger"><i class="fa fa-heart-o"></i> Quero doar</a>
+                <a href="/books" class="btn btn-lg btn-default">Quero participar dos sorteios</a>
             </div>
+        </div>
+    </section>
+
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2>Como funciona</h2>
         </div>
     </section>
     
