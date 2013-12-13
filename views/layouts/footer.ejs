@@ -7,5 +7,9 @@
     </footer>
 
     <script src="/components/jquery/jquery.min.js"></script>
+    
+    <% for(var i = 0; i < page.scripts.length; i++) {%>
+    <script src="<%= page.scripts[i] %>"></script>
+    <% } %>
 </body>
 </html>

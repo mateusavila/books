@@ -9,10 +9,19 @@ module.exports = function(app, passport) {
   // show the login form
   app.get('/login', function(req, res) {
 
-    console.log(Page);
+    var model = {};
+    model.page = new Page();
+
+    model.page.title = "Login - Doe um Livro";
+    model.page.description = "Login - Doe um Livro";
+    model.page.scripts = [
+      "/components/parsleyjs/dist/parsley.min.js"
+    ];
+
+    model.message = req.flash('loginMessage');
 
     // render the page and pass in any flash data if it exists
-    res.render('admin/login.ejs', { message: req.flash('loginMessage') });
+    res.render('admin/login.ejs', model);
   });
 
   // process the login form

@@ -8,7 +8,14 @@ module.exports = function(app, passport) {
 	// HOME PAGE (with login links) ========
 	// =====================================
 	app.get('/', function(req, res) {
-		res.render('index.ejs'); // load the index.ejs file
+
+		var model = {};
+    model.page = new Page();
+
+    model.page.title = "Doe um Livro";
+    model.page.description = "Doe um Livro";
+
+		res.render('index.ejs', model); // load the index.ejs file
 	});
 
 	// =====================================

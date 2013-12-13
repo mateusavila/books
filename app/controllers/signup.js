@@ -9,8 +9,19 @@ module.exports = function(app, passport) {
   // show the signup form
   app.get('/signup', function(req, res) {
 
+    var model = {};
+    model.page = new Page();
+
+    model.page.title = "Cadastre-se - Doe um Livro";
+    model.page.description = "Cadastre-se - Doe um Livro";
+    model.page.scripts = [
+      "/components/parsleyjs/dist/parsley.min.js"
+    ];
+
+    model.message = req.flash('signupMessage');
+
     // render the page and pass in any flash data if it exists
-    res.render('admin/signup.ejs', { message: req.flash('signupMessage') });
+    res.render('admin/signup.ejs', model);
   });
 
   // process the signup form
