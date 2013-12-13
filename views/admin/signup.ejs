@@ -1,0 +1,48 @@
+<!-- views/admin/signup.ejs -->
+<% include ../layouts/header %>
+	
+	<!-- show any messages that come back with authentication -->
+	<% if (message.length > 0) { %>
+	<div class="alert alert-danger"><%= message %></div>
+	<% } %>
+
+	<div class="container" id="signup-page">
+    <div class="box-center">
+      <h2>CADASTRO</h2>
+
+			<a href="/auth/facebook" class="btn btn-block btn-lg btn-primary"><i class="fa fa-facebook"></i> Cadastrar com o Facebook</a>
+
+			<p>Ou criar conta com seu email</p>
+
+      <form action="/signup" id="signup-form" method="POST" novalidate parsley-validate>
+
+          <div class="form-group">
+              <label for="user-name">Nome</label>
+              <input type="text" class="form-control" id="user-name" name="name" required>
+          </div>
+
+          <div class="form-group">
+              <label for="user-email">Email</label>
+              <input type="email" class="form-control" id="user-email" name="email"required>
+          </div>
+
+          <div class="form-group">
+              <label for="user-pswd">Senha</label>
+              <input type="password" class="form-control" id="user-pswd" name="password" required>
+          </div>
+
+          <input type="hidden" name="_csrf" value="{_csrf}">
+          <input type="hidden" name="_method" value="POST">
+
+          <div id="error-already-exist" class="alert alert-warning hide">
+              <i class="fa fa-exclamation-triangle"></i> 
+              O email informado já é cadastrado. <a href="/recovery-pswd">Deseja recuperar sua senha?</a>
+          </div>
+
+          <button class="btn btn-primary btn-lg btn-block">Criar conta</button>
+          
+          <a href="/login">Já possui uma conta? Entre agora</a>
+      </form>
+    </div>
+	</div>
+<% include ../layouts/footer %>

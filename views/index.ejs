@@ -1,25 +1,88 @@
 <!-- views/index.ejs -->
-<!doctype html>
-<html>
-<head>
-	<title>Node Authentication</title>
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-	<style>
-		body 		{ padding-top:80px; }
-	</style>
-</head>
-<body>
-<div class="container">
+<% include layouts/header %>
+<section class="banner">
+      <div class="container">
+          <p>
+              Pare o que está fazendo agora e olhe para sua estante. <br />
+              Quantos livros parados a mais de um ano tem nela? Muitos né?
+          </p>
 
-	<div class="jumbotron text-center">
-		<h1><span class="fa fa-lock"></span> Node Authentication</h1>
+          <p>
+              Que tal fazer uma boa ação e doa-los para quem realmente tem interesse em ler? 
+          </p>
 
-		<p>Login or Register with:</p>
+          <div class="banner-btns">
+              <a href="/donate" class="btn btn-lg btn-danger"><i class="fa fa-heart-o"></i> Quero doar</a>
+              <a href="/books" class="btn btn-lg btn-default">Quero participar dos sorteios</a>
+          </div>
+      </div>
+  </section>
 
-		<a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a>
-	</div>
+  <section class="how-it-works" id="how-it-works">
+      <div class="container">
+          <h2>Como funciona</h2>
 
-</div>
-</body>
-</html>
+          <h3>Doadores</h3>
+          <div class="row tutorial">
+              <div class="col-md-3">
+                  <div class="tutorial-step">
+                      <i class="fa fa-book"></i>
+                      <p>Selecione um livro parado para sortear</p>
+                  </div>
+              </div>
+
+              <div class="col-md-3">
+                  <div class="tutorial-step">
+                      <i class="fa fa-star"></i>
+                      <p>Inicie um sorteio com o livro escolhido</p>
+                  </div>
+              </div>
+
+              <div class="col-md-3">
+                  <div class="tutorial-step">
+                      <i class="fa fa-envelope"></i>
+                      <p>Combine a entrega com o vencedor do sorteio</p>
+                  </div>
+              </div>
+
+              <div class="col-md-3">
+                  <div class="tutorial-step">
+                      <i class="fa fa-money"></i>
+                      <p>Ganhe 5 créditos para participar de sorteios</p>
+                  </div>
+              </div>
+          </div>
+
+          <h3>Sorteios</h3>
+          <div class="row tutorial">
+              <div class="col-md-3">
+                  <div class="tutorial-step">
+                      <i class="fa fa-book"></i>
+                      <p>Procure por um livro que goste na página de sorteios</p>
+                  </div>
+              </div>
+
+              <div class="col-md-3">
+                  <div class="tutorial-step">
+                      <i class="fa fa-star"></i>
+                      <p>Use um crédito para entrar no sorteio. Seus créditos são limitados</p>
+                  </div>
+              </div>
+
+              <div class="col-md-3">
+                  <div class="tutorial-step">
+                      <i class="fa fa-envelope"></i>
+                      <p>Aguarde o resultado. Cada sorteio dura 24 horas</p>
+                  </div>
+              </div>
+
+              <div class="col-md-3">
+                  <div class="tutorial-step">
+                      <i class="fa fa-money"></i>
+                      <p>Se ganhar, combine com o doador a entrega</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+<% include layouts/footer %>
