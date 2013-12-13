@@ -36,7 +36,11 @@ app.configure(function() {
 });
 
 // routes ======================================================================
-require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
+require('./app/controllers/login.js')(app, passport);
+require('./app/controllers/oauth.js')(app, passport);
+require('./app/controllers/signup.js')(app, passport);
+require('./app/controllers/admin.js')(app, passport);
+require('./app/controllers/routes-general.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
 // launch ======================================================================
 app.listen(port);
