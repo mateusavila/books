@@ -12,8 +12,12 @@ module.exports = function(app, passport) {
 		var model = {};
     model.page = new Page();
 
-    model.page.title = "Doe um Livro";
-    model.page.description = "Doe um Livro";
+    model.page.title = "Minha conta - Doe um Livro";
+    model.page.description = "Minha conta - Doe um Livro";
+
+    if (req.user) {
+    	model.page.fillUser(req.user);
+    }
 
 		res.render('index.ejs', model); // load the index.ejs file
 	});
