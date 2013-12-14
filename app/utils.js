@@ -12,9 +12,8 @@ var utils = {
       }
     }
 
-    var url = req.url ? '/login?u=' + encodeURIComponent(req.url) : '/login';
-    // if they aren't redirect them to the home page
-    res.redirect(url);
+    req.session.redirUrl = req.url;
+    res.redirect('/login');
   },
 
   canAccessLoginOrSignup : function(req, res, next) {
