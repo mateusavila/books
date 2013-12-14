@@ -1,13 +1,14 @@
 // app/routes.js
 module.exports = function(app, passport) {
 
-  var Page = require('../models/page');
+  var Page = require('../models/page'),
+      utils = require('../utils');
 
   // =====================================
   // LOGIN ===============================
   // =====================================
   // show the login form
-  app.get('/login', function(req, res) {
+  app.get('/login', utils.canAccessLoginOrSignup, function(req, res) {
 
     var model = {};
     model.page = new Page();
@@ -25,7 +26,7 @@ module.exports = function(app, passport) {
   });
 
   // process the login form
-  app.post('/login', passport.authenticate('local-login'), function(req, res){
+  app.post('/login', utils.canAccessLoginOrSignup, passport.authenticate('local-login'), function(req, res){
     console.log('LOGIN COM SUCESSO');
     console.log(req.query);
 

@@ -1,13 +1,14 @@
 // app/routes.js
 module.exports = function(app, passport) {
 
-  var Page = require('../models/page');
+  var Page = require('../models/page'),
+      utils = require('../utils');
 
   // =====================================
   // SIGNUP ==============================
   // =====================================
   // show the signup form
-  app.get('/signup', function(req, res) {
+  app.get('/signup', utils.canAccessLoginOrSignup, function(req, res) {
 
     var model = {};
     model.page = new Page();
@@ -25,7 +26,7 @@ module.exports = function(app, passport) {
   });
 
   // process the signup form
-  app.post('/signup', passport.authenticate('local-signup', {
+  app.post('/signup', utils.canAccessLoginOrSignup, passport.authenticate('local-signup', {
     successRedirect : '/profile', // redirect to the secure profile section
     failureRedirect : '/signup', // redirect back to the signup page if there is an error
     failureFlash : true // allow flash messages
