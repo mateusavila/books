@@ -28,7 +28,9 @@ var userSchema = mongoose.Schema({
         token        : String,
         email        : String,
         name         : String
-    }
+    },
+    tickets          : String,
+    active           : Boolean
 
 });
 
@@ -37,6 +39,15 @@ userSchema.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.local.password);
 };
 
+userSchema.methods.manageTickets = function(tickets) {
+    var user = this;
+    user.tickets += tickets;
+};
+
+userSchema.methods.userActivate = function(status) {
+    var user = this;
+    user.active = status;
+};
 
 // this method hashes the password and sets the users password
 userSchema.methods.hashPassword = function(password) {

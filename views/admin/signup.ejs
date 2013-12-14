@@ -1,3 +1,8 @@
+<% page.title = "Cadastre-se - Doe um livro" %>
+<% page.description = "Cadastre-se - Doe um livro" %>
+<% page.scripts = [ "/components/parsleyjs/dist/parsley.min.js", "/scripts/signup.js" ] %>
+
+
 <!-- views/admin/signup.ejs -->
 <% include ../layouts/header %>
 
@@ -9,7 +14,7 @@
 
 			<p class="or">Ou criar conta com seu email</p>
 
-      <form action="/api/signup" id="signup-form" method="POST" novalidate parsley-validate>
+      <form action="/api/signup" id="signup-form" method="post" novalidate parsley-validate>
 
           <div class="form-group">
               <label for="user-name">Nome</label>
@@ -26,15 +31,15 @@
               <input type="password" class="form-control" id="user-pswd" name="password" required>
           </div>
 
-          <input type="hidden" name="_csrf" value="{_csrf}">
           <input type="hidden" name="_method" value="POST">
 
-          <div id="error-already-exist" class="alert alert-warning hide">
+          <div id="error-user-already-exist" class="alert alert-warning hide">
               <i class="fa fa-exclamation-triangle"></i> 
-              O email informado já é cadastrado. <a href="/recovery-pswd">Deseja recuperar sua senha?</a>
+              O email informado já é cadastrado.<br />
+              <a href="/recovery-pswd">Deseja recuperar sua senha?</a>
           </div>
 
-          <button class="btn btn-primary btn-lg btn-block">Criar conta</button>
+          <button class="btn btn-primary btn-lg btn-block" id="btn-signup">Criar conta</button>
           
           <a href="/login">Já possui uma conta? Entre agora</a>
       </form>
