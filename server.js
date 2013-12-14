@@ -28,10 +28,16 @@ app.configure(function() {
 	app.use(express.static(__dirname + '/public'));
 
 	// required for passport
-	app.use(express.session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+	app.use(express.session({ secret: 'sciencebitch' })); // session secret
 	app.use(passport.initialize());
 	app.use(passport.session()); // persistent login sessions
 	app.use(flash()); // use connect-flash for flash messages stored in session
+
+	app.use(express.csrf());
+	app.use(function(req, res, next){
+	    res.locals.token = req.csrfToken();
+	    next();
+	});
 
 });
 

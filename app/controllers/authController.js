@@ -2,7 +2,15 @@ module.exports = function(passport, page){
 
   return {
     login : function(req, res) {
-      console.log(req);
+      console.log('POST LOGIN');
+      passport.authenticate('local-login', function(err, user) {
+        if (user) {
+          var url = req.session.redirUrl ? req.session.redirUrl : '/admin/profile';
+          res.send(200, { redirUrl: url });
+        } else {
+          res.send(401);
+        }
+      })(req, res);
     },
 
     logout : function (req, res) {
@@ -10,9 +18,10 @@ module.exports = function(passport, page){
       res.redirect('/');
     },
 
-    signup : function(req, res) {
-
-    },
+    signup : passport.authenticate('local-signup', function(req, res) {
+      console.log('ERR');
+      console.log(res);
+    }),
 
     facebook : passport.authenticate('facebook', { scope : 'email' }),
 

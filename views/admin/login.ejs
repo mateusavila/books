@@ -8,7 +8,7 @@
 
       <p class="or">ou entre com seu usuário e senha</p>
 
-      <form action="/api/login" id="login-form" method="POST" novalidate parsley-validate>
+      <form action="/api/login" id="login-form" method="post" novalidate parsley-validate>
         <div class="form-group">
           <label for="user-email">Email</label>
           <input type="email" class="form-control" id="user-email" name="email" required>
@@ -19,7 +19,6 @@
           <input type="password" class="form-control" id="user-pswd" name="password" required>
         </div>
 
-        <input type="hidden" name="_csrf" value="{_csrf}">
         <input type="hidden" name="_method" value="POST">
 
         <div id="error-user-email-wrong" class="alert alert-warning hide">
@@ -27,7 +26,7 @@
             Usuário e/ou senha errada. <a href="/signup">Deseja criar uma nova conta?</a>
         </div>
 
-        <button class="btn btn-primary btn-block btn-lg">Logar</button>
+        <button class="btn btn-primary btn-block btn-lg" id="btn-login">Logar</button>
         <p><a href="/recovery-pswd">Esqueceu sua senha?</a></p>
         <p><a href="/signup">Não possui uma conta? Crie agora</a></p>
       </form>

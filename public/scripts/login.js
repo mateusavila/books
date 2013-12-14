@@ -1,36 +1,30 @@
 $(document).ready(function(){
 
   var $body = $('body'),
-      $form = $('#login-form');
+      $form = $('#login-form'),
+      $errorAuth = $('#error-user-email-wrong'),
+      $btnLogin = $('#btn-login');
 
   $body.on('submit', $form, function(e) {
 
-    var data = $form.serialize();
+    $errorAuth.addClass('hide');
 
-    $.post( "/login", data)
+    var data = $form.serialize(),
+        route = $form.attr('action');
+
+    $btnLogin.attr('disabled', 'disabled').text('Verificando...');
+
+    $.post( route, data)
       .done(function( data ) {
-        alert( "Data Loaded: " + data );
-
-        var redirUrl = getQs('u');
-
-        if (redirUrl) {
-          window.location.href = redirUrl;
-        } else {
-          window.location.href = "/";
-        }
+        window.location.href = data.redirUrl;
       })
       .error(function(data) {
         console.log(data);
+        $btnLogin.removeAttr('disabled').text('Logar');
+        $errorAuth.removeClass('hide');
       });
 
     e.preventDefault();
   });
 
 });
-
-var getQs = function getParameterByName(name) {
-    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-        results = regex.exec(location.search);
-    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-};
