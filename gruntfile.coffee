@@ -86,7 +86,7 @@ module.exports = (grunt) ->
 
   grunt.registerTask "test-env", -> process.env.NODE_ENV = 'test'
 
-  grunt.registerTask "dist-env", -> process.env.NODE_ENV = 'dist'  
+  grunt.registerTask "dist-env", -> process.env.NODE_ENV = '80'  
   grunt.registerTask "dist", ["dist-env", "shell", "clean", "concurrent:compile", "nodemon"]
 
   grunt.registerTask "default", ["shell", "clean", "concurrent:dev", "concurrent:main"]
