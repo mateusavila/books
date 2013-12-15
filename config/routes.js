@@ -12,6 +12,7 @@ module.exports = function(app, passport, smtp) {
   app.post('/api/login', utils.canAccessLoginOrSignup, _auth.login);
   app.post('/api/signup', utils.canAccessLoginOrSignup, _auth.signup);
   app.post('/api/validate-email', utils.canAccessLoginOrSignup, _auth.emailConfirmation);
+  app.post('/api/change-pswd', _admin.changePswd);
   app.get('/logout', utils.checkAuth, _auth.logout);
   
   app.get('/api/auth/facebook', utils.canAccessLoginOrSignup, _auth.facebook);
@@ -23,7 +24,8 @@ module.exports = function(app, passport, smtp) {
   app.get('/confirm-email', utils.canAccessLoginOrSignup, _auth.renderEmailConfirmation);
 
   // Rotas de ADMIN
-  app.get('/admin/profile', utils.checkAuth, _admin.profile);
+  app.get('/admin/profile', utils.checkAuth, _admin.renderProfile);
+  app.get('/admin/change-pswd', _admin.renderChangePswd);
 
   // Rotas estáticas
   app.get('/', _static.home);

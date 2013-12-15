@@ -24,7 +24,7 @@ module.exports = (grunt) ->
         files: ['public/src/**/*.*', 'views/**/*.*']
         options:
           livereload: true
-        tasks: ['build-client']
+        tasks: ["concurrent:dev"]
 
     nodemon:
       main:
@@ -79,7 +79,7 @@ module.exports = (grunt) ->
       compile: 
         tasks: ['newer:less', 'newer:imagemin', 'newer:uglify']
       dev: 
-        tasks: ['copy:scripts', 'copy:images', 'newer:less']
+        tasks: ['newer:copy:scripts', 'newer:copy:images', 'newer:less']
 
   #Load NPM tasks
   grunt.loadNpmTasks name for name of pkg.devDependencies when name[0..5] is 'grunt-'
@@ -89,7 +89,6 @@ module.exports = (grunt) ->
   grunt.registerTask "dist-env", -> process.env.NODE_ENV = 'dist'  
   grunt.registerTask "dist", ["dist-env", "shell", "clean", "concurrent:compile", "nodemon"]
 
-  grunt.registerTask "build-client", ["clean", "concurrent:dev"]
-  grunt.registerTask "default", ["shell", "build-client", "concurrent:main"]
+  grunt.registerTask "default", ["shell", "clean", "concurrent:dev", "concurrent:main"]
   # grunt.registerTask "dist", ["clean", "harp"]
   

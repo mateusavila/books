@@ -31,7 +31,8 @@ var userSchema = mongoose.Schema({
     },
     tickets          : Number,
     active           : Boolean,
-    activateHash     : String
+    activateHash     : String,
+    changePswdHash   : String
 
 });
 

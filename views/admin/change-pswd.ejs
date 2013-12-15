@@ -1,0 +1,40 @@
+<% page.title = "Alterar senha - Doe um livro" %>
+<% page.description = "Alterar senha - Doe um livro" %>
+<% page.scripts = [ "/components/parsleyjs/dist/parsley.min.js", "/dist/scripts/change-pswd.js" ] %>
+
+<!-- views/admin/login.ejs -->
+<% include ../layouts/header %>
+  <div class="container"> 
+    <div class="box-center">
+      <h1>Alterar senha</h1>
+      
+      <form action="/api/change-pswd" id="change-pswd-form" method="post" novalidate parsley-validate>
+
+        <% if (page.requestToken) { %>
+        <div class="form-group">
+          <label for="pswd-token">Token de verificação enviado para leandroriente@gmail.com</label>
+          <input type="text" class="form-control" id="pswd-token" name="token" required>
+        </div>
+        <% } %>
+
+        <div class="form-group">
+          <label for="new-pswd">Nova senha</label>
+          <input type="password" class="form-control" id="new-pswd" name="newPswd" required>
+        </div>
+
+        <div class="form-group">
+          <label for="confirm-new-pswd">Confirmar nova senha</label>
+          <input type="password" class="form-control" id="confirm-new-pswd" required parsley-equalto="#new-pswd">
+        </div>
+
+        <div id="error-wrong-token" class="alert alert-warning hide">
+          <i class="fa fa-exclamation-triangle"></i> 
+            Token inválido
+        </div>
+
+        <button class="btn btn-primary btn-block btn-lg" id="btn-change-pswd">Alterar senha</button>
+        <p><a href="/signup">Não possui uma conta? Crie agora</a></p>
+      </form>
+    </div>  
+  </div>  
+<% include ../layouts/footer %>
