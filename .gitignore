@@ -4,5 +4,6 @@
 node_modules/
 *.iml
 /public/components/
+/public/dist/
 .nodemonignore
 /public/styles/*.css

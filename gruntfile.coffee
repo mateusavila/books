@@ -7,6 +7,18 @@ module.exports = (grunt) ->
     clean:
       ['public/dist']
 
+    copy:
+      scripts:
+        expand: true,
+        cwd: 'public/src/scripts/',
+        src: ['*.js'],
+        dest: 'public/dist/scripts/'
+      images:
+        expand: true,
+        cwd: 'public/src/images/',
+        src: ['*.*'],
+        dest: 'public/dist/images/'
+
     watch:
       public:
         files: ['public/src/**/*.*', 'views/**/*.*']
@@ -32,7 +44,7 @@ module.exports = (grunt) ->
         options:
           cleancss: true
         files:
-          'public/dist/styles/app.min.css': 'public/src/styles/app.less'
+          'public/dist/styles/app.css': 'public/src/styles/app.less'
 
     uglify:
       main:
@@ -40,8 +52,7 @@ module.exports = (grunt) ->
           expand: true,
           cwd: 'public/src/scripts/',
           src: ['**/*.js'],
-          dest: 'public/dist/scripts/',
-          ext: '.min.js'          
+          dest: 'public/dist/scripts/'        
         ]
 
     imagemin:
@@ -67,12 +78,18 @@ module.exports = (grunt) ->
           limit: 2
       compile: 
         tasks: ['newer:less', 'newer:imagemin', 'newer:uglify']
+      dev: 
+        tasks: ['copy:scripts', 'copy:images', 'newer:less']
 
   #Load NPM tasks
   grunt.loadNpmTasks name for name of pkg.devDependencies when name[0..5] is 'grunt-'
 
   grunt.registerTask "test-env", -> process.env.NODE_ENV = 'test'
-  grunt.registerTask "build-client", ["clean", "concurrent:compile"]
-  grunt.registerTask "default", ["shell", "clean", "concurrent:compile", "concurrent:main"]
+
+  grunt.registerTask "dist-env", -> process.env.NODE_ENV = 'dist'  
+  grunt.registerTask "dist", ["dist-env", "shell", "clean", "concurrent:compile", "nodemon"]
+
+  grunt.registerTask "build-client", ["clean", "concurrent:dev"]
+  grunt.registerTask "default", ["shell", "build-client", "concurrent:main"]
   # grunt.registerTask "dist", ["clean", "harp"]
   
