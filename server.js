@@ -29,6 +29,7 @@ app.configure(function() {
 
 	app.set('view engine', 'ejs'); // set up ejs for templating
 	app.use(express.static(__dirname + '/public'));
+	app.use(express.static(__dirname + '/compiled'));
 
 	// required for passport
 	app.use(express.session({ secret: 'sciencebitch' })); // session secret
