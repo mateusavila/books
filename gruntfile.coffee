@@ -84,11 +84,11 @@ module.exports = (grunt) ->
   #Load NPM tasks
   grunt.loadNpmTasks name for name of pkg.devDependencies when name[0..5] is 'grunt-'
 
-  grunt.registerTask "test-env", -> process.env.NODE_ENV = 'test'
-
-  grunt.registerTask "dist-env", -> process.env.NODE_ENV = '80'  
-  grunt.registerTask "dist", ["dist-env", "shell", "clean", "concurrent:compile", "nodemon"]
+  grunt.registerTask "dist", ["shell", "clean", "concurrent:compile", "nodemon"]
 
   grunt.registerTask "default", ["shell", "clean", "concurrent:dev", "concurrent:main"]
+  
+  # grunt.registerTask "dist-env", -> process.env.NODE_ENV = '80'  
   # grunt.registerTask "dist", ["clean", "harp"]
+  # grunt.registerTask "test-env", -> process.env.NODE_ENV = 'test'
   
