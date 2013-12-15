@@ -20,8 +20,14 @@ $(document).ready(function(){
       })
       .error(function(data) {
         console.log(data);
-        $btnSignup.removeAttr('disabled').text('Logar');
-        $errorSignup.removeClass('hide');
+
+        if (data.status === 401) {
+          $btnSignup.removeAttr('disabled').text('Logar');
+          $errorSignup.removeClass('hide');
+        } else if (data.status === 403) {
+          window.location.href = JSON.parse(data.responseText).redirUrl;
+        }
+        
       });
 
     e.preventDefault();

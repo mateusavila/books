@@ -100,3 +100,21 @@ ul.parsley-error-list li {
   color: #B94A48;
 }
 
+.access-code {
+  text-align: center;
+  padding: 20px;
+  margin: 20px 0;
+  background: #f9f9f9;
+}
+.access-code .input-group {
+  max-width: 200px;
+  margin: 0 auto;
+}
+.access-code .input-group .form-control {
+  font-size: 32px;
+  height: 52px;
+  text-align: center;
+}
+.access-code .input-group .btn {
+  font-size: 27px;
+}

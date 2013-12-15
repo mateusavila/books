@@ -20,8 +20,13 @@ $(document).ready(function(){
       })
       .error(function(data) {
         console.log(data);
-        $btnLogin.removeAttr('disabled').text('Logar');
-        $errorAuth.removeClass('hide');
+
+        if (data.status === 401) {
+          $btnLogin.removeAttr('disabled').text('Logar');
+          $errorAuth.removeClass('hide');
+        } else if (data.status === 403) {
+          window.location.href = JSON.parse(data.responseText).redirUrl;
+        }
       });
 
     e.preventDefault();

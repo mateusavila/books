@@ -29,8 +29,9 @@ var userSchema = mongoose.Schema({
         email        : String,
         name         : String
     },
-    tickets          : String,
-    active           : Boolean
+    tickets          : Number,
+    active           : Boolean,
+    activateHash     : String
 
 });
 
@@ -41,12 +42,27 @@ userSchema.methods.validPassword = function(password) {
 
 userSchema.methods.manageTickets = function(tickets) {
     var user = this;
+    user.tickets = user.tickets ? user.tickets : 0;
     user.tickets += tickets;
 };
 
-userSchema.methods.userActivate = function(status) {
+userSchema.methods.activate = function(status) {
     var user = this;
     user.active = status;
+};
+
+userSchema.methods.generateToken = function(status) {
+    var user = this,
+        hash = ""
+
+    for( var i=0; i < 6; i++ )
+        hash += Math.floor(Math.random() * 9);
+
+    console.log(hash);
+
+    user.activateHash = hash;
+
+    return hash;
 };
 
 // this method hashes the password and sets the users password

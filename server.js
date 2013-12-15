@@ -8,8 +8,12 @@ var port     = process.env.PORT || 8080;
 var mongoose = require('mongoose');
 var passport = require('passport');
 var flash    = require('connect-flash');
+var nodemailer = require("nodemailer");
 
 var configDB = require('./config/database.js');
+var configSMTP = require('./config/smtp.js');
+
+var smtpTransport = nodemailer.createTransport("SMTP", configSMTP);
 
 // configuration ===============================================================
 mongoose.connect(configDB.url); // connect to our database
@@ -17,7 +21,6 @@ mongoose.connect(configDB.url); // connect to our database
 require('./config/passport')(passport); // pass passport for configuration
 
 app.configure(function() {
-
 
 	// set up our express application
 	app.use(express.logger('dev')); // log every request to the console
@@ -42,12 +45,7 @@ app.configure(function() {
 });
 
 // routes ======================================================================
-require('./config/routes.js')(app, passport);
-// require('./app/controllers/login.js')(app, passport);
-// require('./app/controllers/oauth.js')(app, passport);
-// require('./app/controllers/signup.js')(app, passport);
-// require('./app/controllers/admin.js')(app, passport);
-// require('./app/controllers/routes-general.js')(app, passport); // load our routes and pass in our app and fully configured passport
+require('./config/routes.js')(app, passport, smtpTransport);
 
 // launch ======================================================================
 app.listen(port);

@@ -1,0 +1,36 @@
+<% page.title = "Confirme seu email - Doe um livro" %>
+<% page.description = "Confirme seu email - Doe um livro" %>
+<% page.scripts = [ "/components/parsleyjs/dist/parsley.min.js", "/scripts/email-confirmation.js" ] %>
+
+<!-- views/admin/login.ejs -->
+<% include ../layouts/header %>
+  <div class="container">
+    <div class="box-center">
+      <h2>Confirme seu email</h2>
+
+      <div class="access-code">
+        <p>Agora é só informar o código recebido em <br>
+          <strong><%= page.emailToValidate %></strong>
+        </p>
+        <form action="/api/validate-email" id="validate-email-form" method="post" novalidate parsley-validate>
+          <h4>
+            <label for="token">Código de confirmação</label>
+          </h4>
+          <div class="input-group">
+            <input type="text" class="form-control" id="token" name="token" required>
+            <input type="hidden" value="<%= page.emailToValidate %>" name="emailToValidate">
+            <span class="input-group-btn">
+              <button class="btn btn-primary" id="btn-confirm-token"><i class="fa fa-check"></i></button>
+            </span>
+          </div>
+
+          <div id="error-wrong-token" class="alert alert-warning hide">
+            <i class="fa fa-exclamation-triangle"></i> 
+              O código informado não está correto <br> <a href="/signup">Deseja criar uma nova conta?</a>
+          </div>
+        </div>
+        <p><a href="/signup">Não possui uma conta? Crie agora</a></p>
+      </form>
+    </div>
+  </div>  
+<% include ../layouts/footer %>

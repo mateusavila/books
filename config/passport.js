@@ -70,45 +70,45 @@ module.exports = function(passport) {
  //    // we are using named strategies since we have one for login and one for signup
  //    // by default, if there was no name, it would just be called 'local'
 
-    passport.use('local-signup', new LocalStrategy({
-        // by default, local strategy uses username and password, we will override with email
-        usernameField : 'email',
-        passwordField : 'password',
-        passReqToCallback : true // allows us to pass back the entire request to the callback
-    },
-    function(req, email, password, done) {
+    // passport.use('local-signup', new LocalStrategy({
+    //     // by default, local strategy uses username and password, we will override with email
+    //     usernameField : 'email',
+    //     passwordField : 'password',
+    //     passReqToCallback : true // allows us to pass back the entire request to the callback
+    // },
+    // function(req, email, password, done) {
 
-        // find a user whose email is the same as the forms email
-        // we are checking to see if the user trying to login already exists
-        User.findOne({ 'local.email' :  email }, function(err, user) {
-            // if there are any errors, return the error
-            if (err)
-                return done(err);
+    //     // find a user whose email is the same as the forms email
+    //     // we are checking to see if the user trying to login already exists
+    //     User.findOne({ 'local.email' :  email }, function(err, user) {
+    //         // if there are any errors, return the error
+    //         if (err)
+    //             return done(err);
 
-            // check to see if theres already a user with that email
-            if (user) {
-                return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
-            } else {
+    //         // check to see if theres already a user with that email
+    //         if (user) {
+    //             return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+    //         } else {
 
-                // if there is no user with that email
-                // create the user
-                var newUser            = new User();
+    //             // if there is no user with that email
+    //             // create the user
+    //             var newUser            = new User();
 
-                // set the user's local credentials
-                newUser.local.email    = email;
-                newUser.hashPassword(password);
+    //             // set the user's local credentials
+    //             newUser.local.email    = email;
+    //             newUser.hashPassword(password);
 
-                // save the user
-                newUser.save(function(err) {
-                    if (err)
-                        throw err;
-                    return done(null, newUser);
-                });
-            }
+    //             // save the user
+    //             newUser.save(function(err) {
+    //                 if (err)
+    //                     throw err;
+    //                 return done(null, newUser);
+    //             });
+    //         }
 
-        });        
+    //     });        
 
-    }));
+    // }));
 
     // =========================================================================
     // FACEBOOK ================================================================
@@ -159,6 +159,7 @@ module.exports = function(passport) {
                         _user.facebook.name  = profile.displayName; // look at the passport user profile to see how names are returned
                         _user.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
 
+                        _user.activate(true);
                         // save our user to the database
                         _user.save(function(err) {
                             if (err)
