@@ -64,12 +64,6 @@ module.exports = (grunt) ->
           dest: 'public/dist/images/'
         ]
 
-    shell:
-      mongo:
-        command: 'mongod'
-        options:
-          async: true
-
     concurrent:
       main:
         tasks: ['nodemon', 'watch:public']
@@ -84,11 +78,12 @@ module.exports = (grunt) ->
   #Load NPM tasks
   grunt.loadNpmTasks name for name of pkg.devDependencies when name[0..5] is 'grunt-'
 
-  grunt.registerTask "dist", ["shell", "clean", "concurrent:compile", "nodemon"]
+  grunt.registerTask "dist", ["dist-env", "clean", "concurrent:compile", "nodemon"]
 
-  grunt.registerTask "default", ["shell", "clean", "concurrent:dev", "concurrent:main"]
+  grunt.registerTask "default", ["dev-env", "clean", "concurrent:dev", "concurrent:main"]
   
-  # grunt.registerTask "dist-env", -> process.env.NODE_ENV = '80'  
+  grunt.registerTask "dist-env", -> process.env.NODE_ENV = 'PROD'  
+  grunt.registerTask "dev-env", -> process.env.NODE_ENV = 'DEV'  
   # grunt.registerTask "dist", ["clean", "harp"]
   # grunt.registerTask "test-env", -> process.env.NODE_ENV = 'test'
   

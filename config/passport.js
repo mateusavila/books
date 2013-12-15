@@ -9,6 +9,12 @@ var User = require('../app/models/user');
 
 // load the auth variables
 var configAuth = require('./auth');
+var config;
+if (process.env.NODE_ENV === "PROD") {
+    config = configAuth.prod;
+} else if (process.env.NODE_ENV === "DEV") {
+    config = configAuth.dev;
+}
 
 // expose this function to our app using module.exports
 module.exports = function(passport) {
@@ -114,12 +120,10 @@ module.exports = function(passport) {
     // FACEBOOK ================================================================
     // =========================================================================
     passport.use(new FacebookStrategy({
-
         // pull in our app id and secret from our auth.js file
-        clientID        : configAuth.facebookAuth.clientID,
-        clientSecret    : configAuth.facebookAuth.clientSecret,
-        callbackURL     : configAuth.facebookAuth.callbackURL
-
+        clientID        : config.facebookAuth.clientID,
+        clientSecret    : config.facebookAuth.clientSecret,
+        callbackURL     : config.facebookAuth.callbackURL
     },
 
     // facebook will send back the token and profile

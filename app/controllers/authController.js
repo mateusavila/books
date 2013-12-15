@@ -2,7 +2,14 @@ module.exports = function(passport, smtp, page){
 
   var _p = {},
       User = require('../models/user'),
-      GLOBALS = require('../../config/app');
+      config = require('../../config/app'),
+      GLOBALS = function() {
+        if (process.env.NODE_ENV === "PROD") {
+            return config.env.prod;
+        } else if (process.env.NODE_ENV === "DEV") {
+            return config.env.dev;
+        }
+      }();
       // emailTemplates = require('../views/email/minified/emails.js');
 
   _p.forceLogin = function(req, res, user) {

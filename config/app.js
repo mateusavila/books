@@ -1,5 +1,10 @@
 module.exports = {
-
-  'baseUrl' : 'http://localhost:8080'
-
+  'env' : {
+    'prod' : {
+      'baseUrl' : 'http://doeumlivro.com.br'
+    },
+    'dev' : {
+      'baseUrl' : 'http://localhost:8080'
+    }
+  }
 };
