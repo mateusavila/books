@@ -1,7 +1,9 @@
 {
-  "name": "node-authentication",
+  "name": "doe-um-livro",
+  "description": "Doe um livro webapp",
   "main": "server.js",
   "dependencies": {
+    "grunt": "~0.4.1",
     "express": "~3.4.4",
     "ejs": "~0.8.5",
     "mongoose": "~3.8.1",
@@ -13,6 +15,21 @@
     "connect-flash": "~0.1.1",
     "bcrypt-nodejs": "latest",
     "colors": "~0.6.2",
-    "nodemailer": "~0.5.15"
+    "nodemailer": "~0.5.15",
+    "harp": "0.10.0"
+  },
+  "devDependencies": {
+    "grunt": "latest",
+    "grunt-contrib-coffee": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-contrib-less": "latest",
+    "grunt-contrib-clean": "latest",
+    "grunt-concurrent": "latest",
+    "grunt-nodemon": "latest",
+    "grunt-release": "~0.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:leandrooriente/books.git"
   }
 }
