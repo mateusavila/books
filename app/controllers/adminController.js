@@ -34,6 +34,7 @@ module.exports = function(page) {
       var model = {};
       model.page = new page();
 
+      model.page.fillUser(req.user);
       model.page.requestToken = req.user ? false : true;
 
       console.log('USER');
