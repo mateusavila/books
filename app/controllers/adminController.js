@@ -37,9 +37,6 @@ module.exports = function(page) {
       model.page.fillUser(req.user);
       model.page.requestToken = req.user ? false : true;
 
-      console.log('USER');
-      console.log(req.user);
-
       res.render('admin/change-pswd.ejs', model);
     } 
   }
