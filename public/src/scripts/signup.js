@@ -1,6 +1,7 @@
 $(document).ready(function(){
-
-  var $body = $('body'),
+    "use strict";
+  var $doc = $(document),
+      $body = $('body'),
       $form = $('#signup-form'),
       $errorSignup = $('#error-user-already-exist'),
       $btnSignup = $('#btn-login');
