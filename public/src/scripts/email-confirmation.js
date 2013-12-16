@@ -1,11 +1,12 @@
 $(document).ready(function(){
-
-  var $body = $('body'),
+  "use strict";
+  var $doc = $(document),
+      $body = $('body'),
       $form = $('#validate-email-form'),
       $errorToken = $('#error-wrong-token'),
       $btnConfirmation = $('#btn-confirm-token');
 
-  $body.on('submit', $form, function(e) {
+  $doc.on('submit', $form, function(e) {
 
     $errorToken.addClass('hide');
 
