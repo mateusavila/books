@@ -1,11 +1,13 @@
 $(document).ready(function(){
 
-  var $body = $('body'),
+  // sugiro atrelar os eventos para document, ao invés de body.
+  var $doc = $(document),
+      $body = $('body'),
       $form = $('#change-pswd-form'),
       $errorAuth = $('#error-wrong-token'),
       $btnChangePswd = $('#btn-change-pswd');
 
-  $body.on('submit', $form, function(e) {
+  $doc.on('submit', $form, function(e) {
 
     $errorAuth.addClass('hide');
 
