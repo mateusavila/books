@@ -4,7 +4,7 @@
 // get all the tools we need
 var express  = require('express');
 var app      = express();
-var port     = 8080;
+var port     = 8080; 
 var mongoose = require('mongoose');
 var passport = require('passport');
 var flash    = require('connect-flash');
@@ -12,7 +12,7 @@ var nodemailer = require("nodemailer");
 
 var configDB = require('./config/database.js');
 var configSMTP = require('./config/smtp.js');
-
+ 
 var smtpTransport = nodemailer.createTransport("SMTP", configSMTP);
 
 // configuration ===============================================================

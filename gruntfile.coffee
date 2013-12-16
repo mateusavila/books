@@ -25,6 +25,11 @@ module.exports = (grunt) ->
         options:
           livereload: true
         tasks: ["concurrent:dev"]
+      prod:
+        files: ['public/src/**/*.*', 'views/**/*.*']
+        options:
+          livereload: true
+        tasks: ["concurrent:compile"]
 
     nodemon:
       main:
@@ -70,15 +75,26 @@ module.exports = (grunt) ->
         options:
           logConcurrentOutput: true,
           limit: 2
-      compile: 
-        tasks: ['less', 'imagemin', 'uglify']
       dev: 
         tasks: ['copy:scripts', 'copy:images', 'newer:less']
+        options:
+          logConcurrentOutput: true,
+          limit: 2
+      prod:
+        tasks: ['nodemon', 'watch:prod']
+        options:
+          logConcurrentOutput: true,
+          limit: 2
+      compile: 
+        tasks: ['less', 'imagemin', 'uglify']
+        options:
+          logConcurrentOutput: true,
+          limit: 2
 
   #Load NPM tasks
   grunt.loadNpmTasks name for name of pkg.devDependencies when name[0..5] is 'grunt-'
 
-  grunt.registerTask "dist", ["dist-env", "clean", "concurrent:compile"]
+  grunt.registerTask "start-server", ["dist-env", "concurrent:prod"]
 
   grunt.registerTask "default", ["dev-env", "clean", "concurrent:dev", "concurrent:main"]
   
