@@ -71,14 +71,14 @@ module.exports = (grunt) ->
           logConcurrentOutput: true,
           limit: 2
       compile: 
-        tasks: ['newer:less', 'newer:imagemin', 'newer:uglify']
+        tasks: ['less', 'imagemin', 'uglify']
       dev: 
-        tasks: ['newer:copy:scripts', 'newer:copy:images', 'newer:less']
+        tasks: ['copy:scripts', 'copy:images', 'newer:less']
 
   #Load NPM tasks
   grunt.loadNpmTasks name for name of pkg.devDependencies when name[0..5] is 'grunt-'
 
-  grunt.registerTask "dist", ["dist-env", "clean", "concurrent:compile", "nodemon"]
+  grunt.registerTask "dist", ["dist-env", "clean", "concurrent:compile"]
 
   grunt.registerTask "default", ["dev-env", "clean", "concurrent:dev", "concurrent:main"]
   
